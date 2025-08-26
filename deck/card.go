@@ -13,7 +13,7 @@ const (
 	Diamond
 	Club
 	Heart
-	SuitSize
+	suitSize
 	Joker
 )
 
@@ -34,7 +34,7 @@ const (
 	Jack
 	Queen
 	King
-	ValueSize
+	valueSize
 )
 
 type Card struct {
@@ -45,7 +45,7 @@ type Card struct {
 
 func newSuitDeck(suit CardSuit) []Card {
 	var suitDeck []Card
-	for value := range ValueSize {
+	for value := range valueSize - 1 {
 		card := Card{Suit: suit, Value: CardValue(value + 1)}
 		suitDeck = append(suitDeck, card)
 	}
@@ -54,7 +54,7 @@ func newSuitDeck(suit CardSuit) []Card {
 
 func New(opts ...Option) *[]Card {
 	var deck []Card
-	for suit := range SuitSize {
+	for suit := range suitSize {
 		deck = append(deck, newSuitDeck(CardSuit(suit))...)
 	}
 	for _, o := range opts {
@@ -100,4 +100,24 @@ func WithShuffle() Option {
 	}
 }
 
-// func WithFilter(func(card Card) bool) Option {}
+func WithFilter(cardFilter func(card Card) bool) Option {
+	return func(cards []Card) []Card {
+		var filteredDeck []Card
+		for _, card := range cards {
+			if !cardFilter(card) {
+				filteredDeck = append(filteredDeck, card)
+			}
+		}
+		return filteredDeck
+	}
+}
+
+func WithMultipleDeck(decks ...[]Card) Option {
+	return func(c []Card) []Card {
+		var multipleDeck []Card
+		for _, deck := range decks {
+			multipleDeck = append(multipleDeck, deck...)
+		}
+		return multipleDeck
+	}
+}

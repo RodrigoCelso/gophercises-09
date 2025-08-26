@@ -16,9 +16,16 @@ func main() {
 			}
 		}))
 	deckShuffle := deck.New(deck.WithShuffle())
+	deckFilter := deck.New(
+		deck.WithJoker(5),
+		deck.WithFilter(func(card deck.Card) bool {
+			return card.Value == deck.Jack || card.Suit == deck.Joker
+		}))
+	deckMultiple := deck.New(deck.WithMultipleDeck(*deckSort, *deckSortFunc, *deckShuffle, *deckFilter), deck.WithSort())
 
 	fmt.Println("Deck Sort:", deckSort)
 	fmt.Println("Deck Sort Func:", deckSortFunc)
 	fmt.Println("Deck Shuffle:", deckShuffle)
-
+	fmt.Println("Deck Filter:", deckFilter)
+	fmt.Println("Deck Multiple:", deckMultiple)
 }

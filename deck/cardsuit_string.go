@@ -12,11 +12,11 @@ func _() {
 	_ = x[Diamond-1]
 	_ = x[Club-2]
 	_ = x[Heart-3]
-	_ = x[SuitSize-4]
+	_ = x[suitSize-4]
 	_ = x[Joker-5]
 }
 
-const _CardSuit_name = "SpadeDiamondClubHeartSuitSizeJoker"
+const _CardSuit_name = "SpadeDiamondClubHeartsuitSizeJoker"
 
 var _CardSuit_index = [...]uint8{0, 5, 12, 16, 21, 29, 34}
 
@@ -43,10 +43,10 @@ func _() {
 	_ = x[Jack-11]
 	_ = x[Queen-12]
 	_ = x[King-13]
-	_ = x[ValueSize-14]
+	_ = x[valueSize-14]
 }
 
-const _CardValue_name = "AceTwoThreeFourFiveSixSevenEightNineTenJackQueenKingValueSize"
+const _CardValue_name = "AceTwoThreeFourFiveSixSevenEightNineTenJackQueenKingvalueSize"
 
 var _CardValue_index = [...]uint8{0, 3, 6, 11, 15, 19, 22, 27, 32, 36, 39, 43, 48, 52, 61}
 
